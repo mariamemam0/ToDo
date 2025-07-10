@@ -58,7 +58,14 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $this->autherizeProject($project);
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+        $project->update($data);
+        return response()->json($project, 200);
+        
     }
 
     /**
@@ -66,7 +73,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $this->autherizeProject($project);
+        $project->delete();
+        return response()->json(['message' => 'Project deleted successfully'], 200);
     }
 
 
