@@ -25,7 +25,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        // This method is not typically used in API controllers
+        
     }
 
     /**
@@ -33,6 +34,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'name'=> 'required|string|max:255',
+            'description'=> 'nullable|string',
+        ]);
+        $project = Auth::user()->projects()->create($data);
+        return response()->json($project, 201);
+    
         
     }
 
@@ -67,4 +75,7 @@ class ProjectController extends Controller
     {
         //
     }
+
+
+    
 }
