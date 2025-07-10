@@ -23,12 +23,7 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        // This method is not typically used in API controllers
-        
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      */
@@ -49,16 +44,14 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        $this->autherizeProject($project);
+        return $project;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -77,5 +70,10 @@ class ProjectController extends Controller
     }
 
 
-    
+    public function autherizeProject(Project $project)
+    {
+       if ($project->user_id !== Auth::id()) {
+        abort(403, 'Unauthorized');
+    }
+    }
 }
