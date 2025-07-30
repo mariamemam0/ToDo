@@ -6,7 +6,7 @@ A simple and powerful **ToDo list RESTful API** built using **Laravel**. This pr
 
 ## 🚀 Features
 
-- ✅ User Authentication (JWT)
+- ✅ User Authentication 
 - 📂 CRUD for Projects
 - 🗂️ CRUD for Tasks
 - 🔁 Task filtering by status, due date, or project
